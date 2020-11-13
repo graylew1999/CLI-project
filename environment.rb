@@ -1,6 +1,11 @@
 #require all of our files so they can talk to each other
 require 'bundler'
 Bundler.require
+require 'terminal-table'
+require 'table_print'
+require 'rainbow'
+require 'colorize'
+require 'lolize/auto'
 
 # require 'pry'
 # require 'httparty'

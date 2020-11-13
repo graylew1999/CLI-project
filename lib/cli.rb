@@ -1,6 +1,7 @@
 #command line interface
 # #connect with the user & connect our files together
-class Cli
+class Cli 
+
     @@products = ["blush", "bronzer", "eyeliner", "eyeshadow", "foundation", "lipstick", "mascara", "nail_polish"]
     attr_accessor :customer
     
@@ -8,15 +9,6 @@ class Cli
         welcome
         input_name
         main
-        # choose_product
-        # self.display_products
-        # initial_input
-        # secondary_input
-        # all_orders
-        # continue_shopping
-
-        # system "clear"
-    
     end
 
     def main
@@ -27,15 +19,6 @@ class Cli
         all_orders
         continue_shopping
     end
-
-    # def shopping
-    #     choose_product
-    #     self.display_products
-    #     initial_input
-    #     secondary_input
-    #     all_orders
-    #     continue_shopping
-    # end
 
     def welcome
         puts ""
@@ -54,25 +37,29 @@ class Cli
     end
 
     def input_name
-        puts "========================================================"
-        puts "                                                        "
-        puts "             Discover the world of Dior!"
-        puts "               Please enter your name "
-        puts "                                                        "
-        puts "========================================================"
+        puts "================================================================================="
+        puts " "
+        puts "                           Discover the world of Dior!"
+        puts "                             Please enter your name "
+        puts " "
+        puts "================================================================================="
         input = gets.strip.upcase
         @customer = Customers.new(input)
         system "clear"
-        puts "========================================================"
-        puts "                     HELLO #{input}!                    "
-        puts "========================================================"
+        puts "================================================================================="
+        puts  ""
+        puts "                                HELLO #{input}!"
+        puts  ""
+        puts "================================================================================="
 
     end
 
     def choose_product 
-        puts "                                                        "       
-        puts "   Please choose products as below (Type number 1 - 8)  "
-        puts "                                                        "
+        puts ""      
+        puts "Which of these products interst you?" 
+        puts "(Please type number '1 - 8' or '9' to terminate the program)\n"
+        puts "" 
+                                                               
     end
 
     def input_to_index(input)
@@ -82,111 +69,137 @@ class Cli
     def initial_input
         input = gets.strip.to_i
         index = input_to_index(input)
-
+        
         if index.between?(0,7)
-            @@products.each.with_index do |product, i|
+           @@products.select.with_index do |product, i|
                 if index == i
+                    Dior.all.clear
                     Api.new( product )
-                    view_by_product_type( product )
+                    view_by_product_type ( product )
                 end
             end
+
+        elsif input == 9
+            exit
             
         else 
+            puts ""
             puts "Uh oh!!!"
-            puts "We're sorry to say but we don't have the product that you were asking."
-            puts "Pleas try again! ( Type number 1 - 8)" 
+            puts "We're sorry but this is not a valid response."
+            puts "Pleas try again! ( Type number '1 - 8' or '9' to terminate the program)" 
+            puts ""
             initial_input
-           
         end
-        
     end
-
-    def view_by_product_type(query)
-        system "clear"
-        puts "                                                        "
-        puts "             Here are #{query} products." 
-        puts "  Please enjoy your shoping and choose name of product! "
-        puts "                                                        "
-        puts "========================================================"
+   
+   
+    def view_by_product_type(product)
         
-        Dior.all.each_with_index do |query, index| 
-        puts ""
-        puts "#{index+1}.  #{query.name.capitalize.strip}"
-        puts "    Price (£):   #{query.price.capitalize}"
-        puts "    Description: #{query.description.capitalize}"
+        puts "================================================================================="
+        puts " "
+        puts "                     Here are the #{product} products." 
+        puts "                         Enjoy your shopping!"
+        puts "      Please type number of the product you would like to add to your cart"
+        puts "                   Type '100' - to terminate the program"
+        puts " "
+        puts "================================================================================="
+            
+        Dior.all.select.with_index do |product, index| 
+        puts "\n#{index+1}. #{product.name.capitalize.strip}"
+        puts "Price (£):   #{product.price.capitalize.strip}"
+        puts "Description:\n#{product.description.capitalize.strip}\n"
         end
+    
     end
 
 
     def secondary_input
         input = gets.strip.to_i
         index = input_to_index(input)
-        if input.between?(0, Dior.all.size)
+        if index.between?(0, Dior.all.size)
         Dior.all.each.with_index do |product, i|
                 if index == i
                     @customer.order=( product )
-                    puts ""
-                    puts "Thank you for shopping with us! #{@customer.name}"
-                    puts "          ---------------             "
-                    puts ""
-                    puts "Your order details"
-                    puts ""
-                    puts "Product Type: #{product.product_type}"
-                    puts "Product:      #{product.name}"
-                    puts "Price (£):    #{product.price}"
-                    
-                    
+                    puts "========================================================================"
+                    puts "\n#{@customer.name}, Product has been added to your cart.\n "
+                    puts "Product details:\n"
+                    puts "Product Type: #{product.product_type.strip}"
+                    puts "Product:      #{product.name.strip}"
+                    puts "Price (£):    #{product.price.strip}"
                 end
-            end    
-        else 
-            puts ""
-            puts "                          Uh Oh!!!                                    "
-            puts "We're sorry to say but we don't have the product that you were asking."
-            puts "Pleas try again! ( Please type number )                 " 
-            puts ""
+                
+            end
+
+        elsif input == 100
+            exit
+        
+        else
+            puts "\nUh oh!!!"
+            puts "We're sorry but this is not a valid response."
+            puts "Pleas try again! ( Type number or '100' to terminate the program )\n" 
             secondary_input
         end
-        # system "clear"
+      
     end
 
     def continue_shopping
-        puts "                                 "
-        puts "Do you want to continue shopping? "
-        puts " y - to continue shopping  OR  exit - to terminate the program"
+        puts "========================================================================"
+        puts "\nDo you want to continue shopping? "
+        puts "\nType 'yes'      - to continue shopping"  
+        puts "Type 'no'       - to terminate the program"
+        puts "Type 'checkout' - to checkout your cart\n"
         input = gets.strip
-        if input == "y"
-        main
-        elsif input == "exit"
+
+        if input == "yes"
+            main
+
+        elsif input == "no"
             exit
+        
+        elsif input == "checkout"
+            checkout
+        
         else
-            puts "Please try again!"
+            # puts ""
+            puts "\nWe're sorry but this is not a valid response."
+            puts "Please try again!\n"
             continue_shopping
-            system "clear"
         end
-       
     end
      
     def all_orders
-        puts "Your orders as below"
-        puts 
+        puts "\n========================================================================\n"
+        puts "\nYour shopping cart:\n "
+
         @customer.order.each_with_index {|order, index|
-            puts "#{index+1}. #{order.name}"}
-        
+        puts "Product: #{index+1}. #{order.name.strip}\n"}
+    end
+    
+    def checkout
+        puts "\nThank you for shopping with us!"
+        puts "Your order will be delivered soon.\n"
+        puts "Your window will automatically close in 10 seconds!\n"
+        @customer.order.each_with_index do |order, index|
+            puts "#{index+1}. Product: #{order.name.strip}"
+            puts "   Product Type: #{order.product_type.strip}"
+            puts "   Price (£):    #{order.price.strip}"
+            puts ""
+        end
+         sleep(10)
+         system "clear"
+         Kernel.exit
     end
 
     def exit
-        at_exit do 
-            exit 0
-          end
-        puts "We are sad to see you go"
+        puts "\nWe are sad to see you go!\n"
         sleep(1)
-        puts "3"
+        puts "\n3!\n"
         sleep(1)
-        puts "2"
+        puts "\n2!\n"
         sleep(1)
-        puts "1"
+        puts "\n1!\n"
         system "clear"
-        
+        Kernel.exit
     end
 
     def self.products

@@ -14,12 +14,11 @@ class Cli
 
     def main
         choose_product
-        self.display_products
+        display_products
         initial_input
         secondary_input
         all_orders
         continue_shopping
-        
     end
 
     def welcome
@@ -46,22 +45,20 @@ class Cli
         puts " "
         puts "================================================================================="
         input = gets.strip.upcase
-        @customer = Customers.new(input)
+        @customer = Customer.new(input)
         system "clear"
         puts "================================================================================="
         puts  ""
         puts "                                HELLO #{input}!"
         puts  ""
         puts "================================================================================="
-
     end
 
     def choose_product 
         puts ""      
         puts "Which of these products interst you?" 
         puts "(Please type number '1 - 8' or '9' to terminate the program)\n"
-        puts "" 
-                                                               
+        puts ""                                                     
     end
 
     def input_to_index(input)
@@ -70,8 +67,9 @@ class Cli
 
     def initial_input
         input = gets.strip.to_i
+        system "clear"
         index = input_to_index(input)
-        
+
         if index.between?(0,7)
            @@products.select.with_index do |product, i|
                 if index == i
@@ -86,19 +84,26 @@ class Cli
             exit
             
         else 
-            puts ""
-            puts "Uh oh!!!"
+            puts "\nUh oh!!!"
             puts "We're sorry but this is not a valid response."
-            puts "Pleas try again! ( Type number '1 - 8' or '9' to terminate the program)" 
+            puts "Pleas try again! ( Type number '1 - 8' or '9' to terminate the program)\n" 
             puts ""
+            puts "=================================================================================\n"
+            choose_product
+            display_products
             initial_input
+           
             
         end
     end
    
-   
+    def display_products
+        @@products.select.with_index do |product, i|
+        view_by_product_type ( product )
+        end
+    end
+  
     def view_by_product_type(product)
-        
         puts "================================================================================="
         puts " "
         puts "                     Here are the #{product} products." 
@@ -107,19 +112,17 @@ class Cli
         puts "                   Type '100' - to terminate the program"
         puts " "
         puts "================================================================================="
-            
         Dior.all.select.with_index do |product, index| 
         puts "\n#{index+1}. #{product.name.capitalize.strip}"
         puts "Price (£):   #{product.price.capitalize.strip}"
         puts "Description:\n#{product.description.capitalize.strip}\n"
-        
+        puts ""
         end
-    
     end
-
 
     def secondary_input
         input = gets.strip.to_i
+        system "clear"
         index = input_to_index(input)
         if index.between?(0, Dior.all.size)
         Dior.all.each.with_index do |product, i|
@@ -131,20 +134,30 @@ class Cli
                     puts "Product Type: #{product.product_type.strip}"
                     puts "Product:      #{product.name.strip}"
                     puts "Price (£):    #{product.price.strip}"
-                end
-                
-                
+                end  
             end
         elsif input == 100
             exit
         
         else
+            puts ""
             puts "\nUh oh!!!"
-            puts "We're sorry but this is not a valid response."
-            puts "Pleas try again! ( Type number or '100' to terminate the program )\n" 
+            puts "We're sorry but this is not a valid response. Pleas try again!"
+            puts "Please type number of the product you would like to add to your cart"
+            puts "( Type number or '100' to terminate the program )\n" 
+            puts "================================================================================="
+            show_products
             secondary_input
         end
       
+    end
+
+    def show_products
+        Dior.all.each.with_index do |product, index|
+                puts "\n#{index+1}. #{product.name.capitalize.strip}"
+                puts "Price (£):   #{product.price.capitalize.strip}"
+                puts "Description:\n#{product.description.capitalize.strip}\n"
+        end
     end
 
     def continue_shopping
@@ -170,7 +183,6 @@ class Cli
             puts "Please try again!\n"
             continue_shopping
         end
-        
     end
      
     def all_orders
@@ -185,6 +197,7 @@ class Cli
         puts "\nThank you for shopping with us!"
         puts "Your order will be delivered soon.\n"
         puts "Your window will automatically close in 10 seconds!\n"
+        puts ""
         @customer.order.each_with_index do |order, index|
             puts "#{index+1}. Product: #{order.name.strip}"
             puts "   Product Type: #{order.product_type.strip}"
@@ -217,7 +230,7 @@ class Cli
     end
 
     def display_products
-        Cli.products.each_with_index{|product, index| 
+        @@products.each_with_index{|product, index| 
         puts "#{index+1}. #{product.capitalize}"}
     end
 

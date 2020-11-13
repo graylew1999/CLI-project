@@ -1,4 +1,4 @@
-class Customers
+class Customer
     attr_accessor :name, :order
 
     @@all = []
@@ -13,8 +13,12 @@ class Customers
         @@all
     end
 
+    # def orders
+    #     Order.all.select{|order| order.customer == self}
+    # end
     def order=(order)
         @order << order
     end
 
+  
 end

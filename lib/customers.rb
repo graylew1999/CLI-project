@@ -17,13 +17,4 @@ class Customers
         @order << order
     end
 
-    # def dior
-    #     Dior.all.select do |dior|
-    #         dior.customer == self
-    #     end
-    # end
-
-    # def new_order(name, product_type, price, description)
-    #     Dior.new(name, product_type, price, description)
-    # end
 end

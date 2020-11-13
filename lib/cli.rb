@@ -9,6 +9,7 @@ class Cli
         welcome
         input_name
         main
+        
     end
 
     def main
@@ -18,6 +19,7 @@ class Cli
         secondary_input
         all_orders
         continue_shopping
+        
     end
 
     def welcome
@@ -77,6 +79,7 @@ class Cli
                     Api.new( product )
                     view_by_product_type ( product )
                 end
+               
             end
 
         elsif input == 9
@@ -89,6 +92,7 @@ class Cli
             puts "Pleas try again! ( Type number '1 - 8' or '9' to terminate the program)" 
             puts ""
             initial_input
+            
         end
     end
    
@@ -108,6 +112,7 @@ class Cli
         puts "\n#{index+1}. #{product.name.capitalize.strip}"
         puts "Price (£):   #{product.price.capitalize.strip}"
         puts "Description:\n#{product.description.capitalize.strip}\n"
+        
         end
     
     end
@@ -118,7 +123,7 @@ class Cli
         index = input_to_index(input)
         if index.between?(0, Dior.all.size)
         Dior.all.each.with_index do |product, i|
-                if index == i
+                if index == i 
                     @customer.order=( product )
                     puts "========================================================================"
                     puts "\n#{@customer.name}, Product has been added to your cart.\n "
@@ -128,8 +133,8 @@ class Cli
                     puts "Price (£):    #{product.price.strip}"
                 end
                 
+                
             end
-
         elsif input == 100
             exit
         
@@ -143,13 +148,13 @@ class Cli
     end
 
     def continue_shopping
-        puts "========================================================================"
+        puts "\n========================================================================"
         puts "\nDo you want to continue shopping? "
         puts "\nType 'yes'      - to continue shopping"  
         puts "Type 'no'       - to terminate the program"
         puts "Type 'checkout' - to checkout your cart\n"
         input = gets.strip
-
+        system "clear"
         if input == "yes"
             main
 
@@ -165,6 +170,7 @@ class Cli
             puts "Please try again!\n"
             continue_shopping
         end
+        
     end
      
     def all_orders

@@ -1,1 +1,2 @@
-# CLI-project
+# CLI Project - Shopping simulation
+

@@ -1,6 +1,7 @@
 
 # CLI PROJECT - Shopping Simulation
 
+This CLI is a Phase 1 Portfolio Project for the Flatiron School Software Engineering curriculum.
 I constructed my project to be a shopping simulation similar to what you would find on an online shopping application. It allows you to add products one at a time to a shopping a shopping cart prior to checkout.
 
 ## Getting Started

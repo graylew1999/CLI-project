@@ -41,7 +41,7 @@ You can even do this in your compass `config.rb`:
 
 
 ## References
-![Makeup API site](http://makeup-api.herokuapp.com/?ref=apilist.fun)
+[Makeup API site](http://makeup-api.herokuapp.com/?ref=apilist.fun)
 
 
 ## License

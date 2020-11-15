@@ -48,8 +48,8 @@ You can even do this in your compass `config.rb`:
 
 ## License
 
-MIT License
+[MIT License](https://opensource.org/licenses/MIT)
+
 =======
-# CLI Project - Shopping simulation
 
 

@@ -77,7 +77,6 @@ class Cli
                     Api.new( product )
                     view_by_product_type ( product )
                 end
-               
             end
 
         elsif input == 9
@@ -91,9 +90,7 @@ class Cli
             puts "=================================================================================\n"
             choose_product
             display_products
-            initial_input
-           
-            
+            initial_input  
         end
     end
    
@@ -106,17 +103,17 @@ class Cli
     def view_by_product_type(product)
         puts "================================================================================="
         puts " "
-        puts "                     Here are the #{product} products." 
-        puts "                         Enjoy your shopping!"
+        puts "                       Here are the #{product} products." 
+        puts "                             Enjoy your shopping!"
         puts "      Please type number of the product you would like to add to your cart"
-        puts "                   Type '100' - to terminate the program"
+        puts "                     Type '100' - to terminate the program"
         puts " "
         puts "================================================================================="
         Dior.all.select.with_index do |product, index| 
         puts "\n#{index+1}. #{product.name.capitalize.strip}"
         puts "Price (£):   #{product.price.capitalize.strip}"
         puts "Description:\n#{product.description.capitalize.strip}\n"
-        puts ""
+        
         end
     end
 
@@ -134,6 +131,7 @@ class Cli
                     puts "Product Type: #{product.product_type.strip}"
                     puts "Product:      #{product.name.strip}"
                     puts "Price (£):    #{product.price.strip}"
+                    
                 end  
             end
         elsif input == 100
@@ -144,8 +142,8 @@ class Cli
             puts "\nUh oh!!!"
             puts "We're sorry but this is not a valid response. Pleas try again!"
             puts "Please type number of the product you would like to add to your cart"
-            puts "( Type number or '100' to terminate the program )\n" 
-            puts "================================================================================="
+            puts "( Type number or '100' to terminate the program )" 
+            puts "\n================================================================================="
             show_products
             secondary_input
         end
@@ -203,8 +201,30 @@ class Cli
             puts "   Product Type: #{order.product_type.strip}"
             puts "   Price (£):    #{order.price.strip}"
             puts ""
+           
+        
         end
-         sleep(10)
+        sleep(1)
+        puts "\n10!\n"
+        sleep(1)
+        puts "\n9!\n"
+        sleep(1)
+        puts "\n8!\n"
+        sleep(1)
+        puts "\n7!\n"
+        sleep(1)
+        puts "\n6!\n"
+        sleep(1)
+        puts "\n5!\n"
+        sleep(1)
+        puts "\n4!\n"
+        sleep(1)
+        puts "\n3!\n"
+        sleep(1)
+        puts "\n2!\n"
+        sleep(1)
+        puts "\n1!\n"
+        system "clear"
          system "clear"
          Kernel.exit
     end

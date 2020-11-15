@@ -2,7 +2,7 @@ class Customer
     attr_accessor :name, :order
 
     @@all = []
-
+   
     def initialize(name)
         @name = name
         @order = []

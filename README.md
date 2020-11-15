@@ -21,15 +21,6 @@ You need 256-color terminal for best experience.
 
 Just require `lolize/auto`. it will automatically hook your `$stdout` and `$stderr`. 
 
-### Bundler Gemfile
-
-For example, you can do this in your rails project: 
-
-    # Gemfile
-    gem 'lolize', :require => 'lolize/auto'
-
-![Rails with lolize](http://miaout17.github.com/lolize/lolize-rails.png)
-
 ### Any Ruby, anywhere
 
 Here is the snippet:
@@ -37,10 +28,11 @@ Here is the snippet:
     gem 'lolize'
     require 'lolize/auto'
 
-You can even do this in your compass `config.rb`:
+## Ready for shopping?
 
-![Compass watch with lolize](http://miaout17.github.com/lolize/lolize-compass.png)
+In order to run the program, you need to first start by typing code as below 
 
+    ruby bin/run
 
 ## References
 [Makeup API site](http://makeup-api.herokuapp.com/?ref=apilist.fun)

@@ -1,3 +1,4 @@
+
 # CLI PROJECT - Shopping Simulation
 
 I constructed my project to be a shopping simulation similar to what you would find on an online shopping application. It allows you to add products one at a time to a shopping a shopping cart prior to checkout.
@@ -47,3 +48,7 @@ You can even do this in your compass `config.rb`:
 ## License
 
 MIT License
+=======
+# CLI Project - Shopping simulation
+
+
